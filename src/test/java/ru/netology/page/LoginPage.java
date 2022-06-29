@@ -10,10 +10,12 @@ public class LoginPage {
     private SelenideElement passwordInput = $x(".//span[@data-test-id=\"password\"]//input");
     private SelenideElement loginButton = $x(".//button[@data-test-id=\"action-login\"]");
 
-    public VerificationPage login(DataHelper user) {
-        loginInput.val(user.getLogin());
-        passwordInput.val(user.getPassword());
+    public VerificationPage validLogin(DataHelper.AuthInfo info) {
+        loginInput.val(info.getLogin());
+        passwordInput.val(info.getPassword());
         loginButton.click();
         return new VerificationPage();
     }
+
+
 }

@@ -5,14 +5,33 @@ import lombok.Value;
 
 @Data
 public class DataHelper {
+    private DataHelper() {}
 
-    private final String login = "vasya";
-    private final String password = "qwerty123";
-    private final String verificationCode = "12345";
-    private final String[] cards = new String[]{"5559 0000 0000 0001", "5559 0000 0000 0002"};
 
-    public String getCard(int index) {
-        String card = cards[index];
-        return card;
+    @Value
+    public static class AuthInfo {
+        private String login;
+        private String password;
     }
+
+    public static AuthInfo getAuthInfo() {
+        return new AuthInfo("vasya", "qwerty123");
+    }
+
+    public static AuthInfo getOtherAuthInfo() {
+        return new AuthInfo("petya", "000");
+    }
+
+    @Value
+    public static class VerificationCode {
+        private String code;
+    }
+
+    public static VerificationCode getVerificationCodeFor(AuthInfo authInfo) {
+        return new VerificationCode("12345");
+    }
+
+
 }
+
+
